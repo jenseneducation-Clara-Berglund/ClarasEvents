@@ -1,39 +1,28 @@
 <template>
   <div class="eventItemContainer">
+    <img class="image" :src="require('@/assets/' + event.image)" />
+    <div class="name">{{ event.name }}</div>
+    <div class="date">{{ event.date }}</div>
+    <div class="info">{{ event.info }}</div>
     <p>This is an upcoming event</p>
-    <div class="eventName"/>
-
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    image: String,
-    imageHeight: String,
-    name: String
-
+    event: Object
   }
 }
 </script>
 
 <style>
+.eventItemContainer {
+  background-color: salmon;
+}
+
+.image {
+  height: 10em;
+  width: 12em;
+}
 </style>
-<script>
-
-//   <div class="product-item">
-//     <img class="image" :height="imgHeight"
-//     :src="image" />
-//     <div class="name">{{ name }}</div>
-//     <div class="price">{{ price }}</div>
-//   </div>
-// </template>
-
-// export default {
-//   props: {
-//     price: Number,
-//     name: String,
-//     image: String,
-//     imgHeight: String
-//   },
-// };
