@@ -9,30 +9,39 @@
         v-bind:event="e"
         :key="e.id"
       />
+      <EventDetail v-if="showModal" />
     </div>
   </div>
 </template>
 
 <script>
-import Button from "@/components/Button.vue"
-import EventItem from "@/components/EventItem.vue"
-import { mapGetters } from "vuex"
+import Button from "@/components/Button.vue";
+import EventItem from "@/components/EventItem.vue";
+import EventDetail from "@/components/EventDetail.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
   components: {
     Button,
-    EventItem
+    EventItem,
+    EventDetail,
   },
 
   computed: {
-    ...mapGetters(["listOfEvents"])
+    ...mapGetters(["listOfEvents"]),
   },
 
   methods: {
-    profileButtonClicked () {} // skriva func för detta.
-  }
-}
+    profileButtonClicked() {},
+  },
+
+  data() {
+    return {
+      showModal: false,
+    };
+  },
+};
 </script>
 
 <style></style>
