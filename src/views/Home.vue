@@ -1,60 +1,76 @@
 <template>
   <div class="homeContainer">
-    <p>CLARAS EVENTS</p>
-    <div class="buttonContainer">
-      <Button :click="profileButtonClicked" />
-      <EventItem
-        class="eventItem"
-        v-for="e in listOfEvents"
-        v-bind:event="e"
-        :key="e.id"
-        @clicked="showEventModal(e)"
-      />
-      <EventDetail
-        v-bind:event="this.event"
-        v-if="showModal"
-        @close="closeEventModal"
-      />
+    <div class="navContainer">
+      <p>CLARAS EVENTS</p>
+      <div class="buttonContainer">
+        <Button @click.native="$router.push('/Profile/')" title="MyProfile" />
+      </div>
+      <div class="eventsContainer">
+        <EventItem
+          class="eventItem"
+          v-for="e in listOfEvents"
+          v-bind:event="e"
+          :key="e.id"
+          @clicked="showEventModal(e)"
+        />
+        <EventDetail
+          v-bind:event="this.event"
+          v-if="showModal"
+          @close="closeEventModal"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Button from "@/components/Button.vue"
-import EventItem from "@/components/EventItem.vue"
-import EventDetail from "@/components/EventDetail.vue"
-import { mapGetters } from "vuex"
+import Button from "@/components/Button.vue";
+import EventItem from "@/components/EventItem.vue";
+import EventDetail from "@/components/EventDetail.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
   components: {
     Button,
     EventItem,
-    EventDetail
+    EventDetail,
   },
 
   computed: {
-    ...mapGetters(["listOfEvents"])
+    ...mapGetters(["listOfEvents"]),
   },
 
   methods: {
-    profileButtonClicked () {},
-    closeEventModal () {
-      this.showModal = false
+    profileButtonClicked() {},
+    closeEventModal() {
+      this.showModal = false;
     },
-    showEventModal (e) {
-      this.event = e
-      this.showModal = true
-    }
+    showEventModal(e) {
+      this.event = e;
+      this.showModal = true;
+    },
   },
 
-  data () {
+  data() {
     return {
       showModal: false,
-      event: null
-    }
-  }
-}
+      event: null,
+    };
+  },
+};
 </script>
 
-<style></style>
+<style>
+.navContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.eventsContainer {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+</style>
