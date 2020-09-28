@@ -4,28 +4,25 @@ import store from "@/store/index.js";
 const { shallowMount, createLocalVue } = require("@vue/test-utils");
 
 describe("EventDetailTests", () => {
-  const localVue = createLocalVue();
-  it("should show the EventDetail component when 'showModal' is true at the homepage", async () => {
-    const wrapper = shallowMount(Home, {
+  it("should be able to se the event info at the EventDetail component", () => {
+    const wrapper = shallowMount(EventDetail, {
       localVue,
       store,
+      propsData: {
+        event: {
+          id: 1,
+          name: "We love code",
+          date: "17 Oct",
+          info:
+            "Meetup for coders! Join this event to meet new code-loving friends!",
+          image: "codeEvent.jpg",
+        },
+      },
     });
 
-    wrapper.vm.showModal = true;
-    await wrapper.vm.$nextTick();
-    const actual = wrapper.findComponent(EventDetail).exists();
-    expect(actual).toBe(true);
-  });
-
-  it("should not show the EventDetail component when 'showModal' is false at the homepage", async () => {
-    const wrapper = shallowMount(Home, {
-      localVue,
-      store,
-    });
-
-    wrapper.vm.showModal = false;
-    await wrapper.vm.$nextTick();
-    const actual = wrapper.findComponent(EventDetail).exists();
-    expect(actual).toBe(false);
+    const expected =
+      "Meetup for coders! Join this event to meet new code-loving friends!";
+    const actual = wrapper.find(".eventInfoContainer").text();
+    expect(actual).toBe(expected);
   });
 });
