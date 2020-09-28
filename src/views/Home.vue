@@ -8,40 +8,53 @@
         v-for="e in listOfEvents"
         v-bind:event="e"
         :key="e.id"
+        @clicked="showEventModal(e)"
       />
-      <EventDetail v-if="showModal" />
+      <EventDetail
+        v-bind:event="this.event"
+        v-if="showModal"
+        @close="closeEventModal"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import Button from "@/components/Button.vue";
-import EventItem from "@/components/EventItem.vue";
-import EventDetail from "@/components/EventDetail.vue";
-import { mapGetters } from "vuex";
+import Button from "@/components/Button.vue"
+import EventItem from "@/components/EventItem.vue"
+import EventDetail from "@/components/EventDetail.vue"
+import { mapGetters } from "vuex"
 
 export default {
   name: "Home",
   components: {
     Button,
     EventItem,
-    EventDetail,
+    EventDetail
   },
 
   computed: {
-    ...mapGetters(["listOfEvents"]),
+    ...mapGetters(["listOfEvents"])
   },
 
   methods: {
-    profileButtonClicked() {},
+    profileButtonClicked () {},
+    closeEventModal () {
+      this.showModal = false
+    },
+    showEventModal (e) {
+      this.event = e
+      this.showModal = true
+    }
   },
 
-  data() {
+  data () {
     return {
       showModal: false,
-    };
-  },
-};
+      event: null
+    }
+  }
+}
 </script>
 
 <style></style>
