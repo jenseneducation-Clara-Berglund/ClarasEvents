@@ -1,11 +1,15 @@
 <template>
   <div class="ButtonContainer">
-    <button>My Profile</button>
+    <button>{{ title }}</button>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    title: String
+  }
+}
 </script>
 
 <style></style>
