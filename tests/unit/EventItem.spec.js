@@ -33,4 +33,10 @@ describe("EventItem Tests", () => {
     console.log(actual) // test fails, returns empty string
     expect(actual).toBe(expected)
   })
+
+  it("should be able to emit the clicked-event when clicked", async () => {
+    wrapper.trigger("click")
+    await wrapper.vm.$nextTick()
+    expect(wrapper.emitted().clicked).toBeTruthy()
+  })
 })

@@ -1,19 +1,18 @@
 <template>
-  <div class="eventItemContainer">
+  <div class="eventItemContainer" v-on:click="$emit('clicked', event)">
     <img class="image" :src="require('@/assets/' + event.image)" />
     <div class="name">{{ event.name }}</div>
     <div class="date">{{ event.date }}</div>
     <div class="info">{{ event.info }}</div>
-    <p>This is an upcoming event</p>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    event: Object
-  }
-}
+    event: Object,
+  },
+};
 </script>
 
 <style>
