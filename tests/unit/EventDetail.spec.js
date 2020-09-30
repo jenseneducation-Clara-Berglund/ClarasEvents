@@ -17,7 +17,7 @@ describe("EventDetailTests", () => {
         date: "17 Oct",
         info:
           "Meetup for coders! Join this event to meet new code-loving friends!",
-        image: "codeEvent.jpg"
+        image: "bunny-1149060_640.jpg"
       }
     }
   })
