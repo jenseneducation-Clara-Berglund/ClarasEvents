@@ -84,7 +84,7 @@ export default {
   justify-content: flex-start;
   display: flex;
   flex-direction: column;
-  background-color: beige;
+  background-color: lightgray;
 }
 
 .closeButtonContainer {
@@ -95,8 +95,4 @@ export default {
   z-index: 1;
   margin-top: -1.5em;
 }
-
-/* .inputField {
- 
-} */
 </style>

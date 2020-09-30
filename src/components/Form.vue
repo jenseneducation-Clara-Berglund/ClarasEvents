@@ -1,6 +1,8 @@
 <template>
   <div class="contentContainer">
     <div class="formContainer">
+      <h1>Ange dina uppgifter för att delta!</h1>
+
       <form>
         <label for="fname">First name:</label><br />
         <input v-model="fName" type="text" id="fname" name="fname" /><br />
@@ -8,10 +10,13 @@
         <input v-model="lName" type="text" id="lname" name="lname" /><br />
         <label for="email">Email:</label><br />
         <input v-model="email" type="text" id="email" name="email" /><br />
-        <div class="submitButton" v-on:click="submitButtonPressed()">
+        <div
+          v-if="fName.length > 0 && lName.length > 0 && email.length > 0"
+          class="submitButton"
+          v-on:click="submitButtonPressed()"
+        >
           <p>SUBMIT</p>
         </div>
-        <!-- <div class="listOfEvents" v-bind="getListOfEvents()"></div> -->
       </form>
     </div>
   </div>
@@ -33,15 +38,7 @@ export default {
 
       this.$router.push("/Profile");
     },
-
-    // getListOfEvents() {
-    //     const submittedEvents = listOfEventsSignedUpFor
-
-    // }
-
     ...mapActions(["signUpForEvent", "attendEvent"]),
-
-    // ...mapGetters (["listOfEventsSignedUpFor"])
   },
 
   data() {
@@ -56,7 +53,7 @@ export default {
 
 <style scoped>
 .contentContainer {
-  background: lightgray;
+  /* background: white; */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -66,11 +63,12 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  height: 25em;
-  width: 35em;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
+  text-align: left;
 }
 
 .submitButton {
@@ -82,5 +80,11 @@ export default {
   height: 2em;
   width: 6em;
   margin-top: 2em;
+}
+label {
+  font-size: 2em;
+}
+input {
+  font-size: 2em;
 }
 </style>
