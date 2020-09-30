@@ -2,6 +2,7 @@ import Vue from "vue"
 import VueRouter from "vue-router"
 import Home from "../views/Home.vue"
 import Profile from "../views/Profile.vue"
+import JoinEvent from "../views/JoinEvent.vue"
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,11 @@ const routes = [
     path: "/Profile",
     name: "Profile",
     component: Profile
+  },
+  {
+    path: "/JoinEvent/:id",
+    name: "JoinEvent",
+    component: JoinEvent
   }
 ]
 
