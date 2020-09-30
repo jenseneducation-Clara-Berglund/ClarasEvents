@@ -1,6 +1,6 @@
 <template>
   <div class="buttonContainer" v-on:click="$emit('clicked')">
-    {{ title }}
+    <p>{{ title }}</p>
   </div>
 </template>
 
@@ -17,9 +17,13 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightpink;
+  background-color: #caff8a;
   height: 4em;
   min-width: 3em;
-  max-width: 9em;
+  max-width: 6em;
+}
+.buttonContainer > p {
+  color: black;
+  font-size: 1em;
 }
 </style>
