@@ -21,14 +21,29 @@ describe("EventDetailTests", () => {
       }
     }
   })
-  it("should be able to se the event info at the EventDetail component", () => {
+  it("should be able to se the event info", () => {
     const expected =
       "Meetup for coders! Join this event to meet new code-loving friends!"
     const actual = wrapper.find(".eventInfoContainer").text()
     expect(actual).toBe(expected)
   })
-  it("should be able to see the CloseButton component at the EventDetail view", () => {
-    const actual = wrapper.findComponent(CloseButton).exists()
+  it("should be able to se the event date", () => {
+    const expected =
+      "17 Oct"
+    const actual = wrapper.find(".eventDateContainer").text()
+    expect(actual).toBe(expected)
+  })
+  it("should be able to se the join event button", () => {
+    const actual = wrapper.find(".actionButtonContainer").exists()
+    expect(actual).toBe(true)
+  })
+  it("should emit 'join-event' when joinEvent button is pressed", async () => {
+    wrapper.find(".actionButtonContainer").trigger("click")
+    await wrapper.vm.$nextTick()
+    expect(wrapper.emitted("join-event")).toBeTruthy()
+  })
+  it("should be able to see the CloseButton component", () => {
+    const actual = wrapper.find(CloseButton).exists()
     expect(actual).toBe(true)
   })
 })
