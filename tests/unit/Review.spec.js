@@ -19,4 +19,10 @@ describe("tests for the Review-component", () => {
     const actual = wrapper.findComponent(CloseButton).exists()
     expect(actual).toBe(true)
   })
+
+  it("should emit the CloseButtonPressed event when clicked", async () => {
+    wrapper.trigger("click")
+    await wrapper.vm.$nextTick()
+    expect(wrapper.emitted().clicked).toBeTruthy()
+  })
 })
