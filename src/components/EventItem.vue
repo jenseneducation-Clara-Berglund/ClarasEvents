@@ -3,9 +3,13 @@
     <img class="image" :src="require('@/assets/' + event.image)" />
     <div class="name">{{ event.name }}</div>
     <div class="date">{{ event.date }}</div>
-    <div class="buttonsContainer">
-      <Button title="Join Event" />
-      <Button @clicked="reviewButtonClicked()" title="Add your review" />
+    <div
+      style="font-weight: bold"
+      id="reviewButton"
+      v-if="showReviewButton"
+      v-on:click="$emit('review-button-clicked', event)"
+    >
+      Reviews
     </div>
   </div>
 </template>
@@ -14,6 +18,7 @@
 export default {
   props: {
     event: Object,
+    showReviewButton: Boolean,
   },
 };
 </script>
