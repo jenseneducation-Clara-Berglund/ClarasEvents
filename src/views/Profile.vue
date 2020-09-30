@@ -8,6 +8,7 @@
           v-bind:event="e"
           :key="e.id"
         />
+        <Button @clicked="reviewButtonClicked" :title="Review" />
       </div>
       <Review @close="closeReviewModal" v-if="showReviewModal" />
     </div>
@@ -25,7 +26,6 @@ export default {
     Button,
     Review,
     EventItem,
-    mapGetters,
   },
 
   computed: {
