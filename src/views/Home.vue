@@ -5,12 +5,12 @@
       background-image: url(https://pixabay.com/photos/blurry-lights-night-dark-eventing-691240/);
     "
   >
+    <router-link to="/Profile">Profile</router-link>
+
     <div class="navContainer">
       <p>CLARA'S EVENTS</p>
-      <div class="buttonContainer">
-        <Button @click.native="$router.push('/Profile/')" title="MyProfile" />
-      </div>
     </div>
+    <h2>Events to choose from</h2>
     <div class="eventsContainer">
       <EventItem
         class="eventItem"
@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import Button from "@/components/Button.vue";
 import EventItem from "@/components/EventItem.vue";
 import EventDetail from "@/components/EventDetail.vue";
 import { mapGetters } from "vuex";
@@ -38,7 +37,6 @@ import { mapGetters } from "vuex";
 export default {
   name: "Home",
   components: {
-    Button,
     EventItem,
     EventDetail,
   },
@@ -84,7 +82,6 @@ p {
 }
 .navContainer {
   display: flex;
-  width: 60%;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -92,9 +89,10 @@ p {
 
 .eventsContainer {
   display: flex;
-  width: 60%;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  max-width: 80%;
 }
 
 .buttonContainer {
