@@ -20,6 +20,12 @@ describe("Form tests", () => {
     const fn = jest.fn()
     const wrapper = shallowMount(Form, {
     })
+    // needed to show the button
+    await wrapper.setData({
+      fName: "test",
+      lName: "test",
+      email: "test"
+    })
     wrapper.vm.submitButtonPressed = fn
     wrapper.find(".submitButton").trigger("click")
     await wrapper.vm.$nextTick()
