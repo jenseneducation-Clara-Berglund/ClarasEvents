@@ -1,29 +1,34 @@
 <template>
   <div class="profileContainer">
+    <router-link to="/">Home</router-link>
     <div class="profileContentContainer">
+      <h2>My attended events</h2>
       <div class="myAttendedEvents">
         <EventItem
           class="eventItem"
           v-for="e in listOfAttendedEvents"
           v-bind:event="e"
           :key="e.id"
+          :showReviewButton="true"
+          @review-button-clicked="reviewButtonClicked(e)"
         />
-        <Button @clicked="reviewButtonClicked" :title="Review" />
       </div>
-      <Review @close="closeReviewModal" v-if="showReviewModal" />
+      <Review
+        :event="selectedEvent"
+        @close="closeReviewModal"
+        v-if="showReviewModal"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import Button from "@/components/Button.vue";
 import Review from "@/components/Review.vue";
 import EventItem from "@/components/EventItem.vue";
 import { mapGetters } from "vuex";
 
 export default {
   components: {
-    Button,
     Review,
     EventItem,
   },
@@ -33,43 +38,54 @@ export default {
   },
 
   methods: {
-    reviewButtonClicked() {
+    reviewButtonClicked(e) {
+      this.selectedEvent = e;
       this.showReviewModal = true;
     },
 
     closeReviewModal() {
+      this.selectedEvent = null;
       this.showReviewModal = false;
     },
   },
   data() {
     return {
       showReviewModal: false,
+      selectedEvent: null,
     };
   },
 };
 </script>
 
 <style>
+.profileContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding-top: 5em;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  background-color: lightgray;
+}
 .profileContentContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 10em;
-  background-color: skyblue;
 }
 .myAttendedEvents {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  width: 60%;
-  background-color: purple;
+  justify-content: center;
+
+  align-items: center;
+  background-color: white;
 }
 
 .addReviewContainer {
   display: flex;
   flex-direction: row;
-  height: 20em;
   background-color: seagreen;
 }
 </style>
