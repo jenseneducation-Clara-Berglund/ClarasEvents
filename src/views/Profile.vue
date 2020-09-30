@@ -1,10 +1,15 @@
 <template>
   <div class="profileContainer">
     <div class="profileContentContainer">
-      <div class="myAttendedEvents"></div>
-      <div class="addReviewContainer"></div>
-      <Button @clicked="reviewButtonClicked()" title="Add your review" />
-      <Review v-if="showReviewModal" />
+      <div class="myAttendedEvents">
+        <EventItem
+          class="eventItem"
+          v-for="e in listOfAttendedEvents"
+          v-bind:event="e"
+          :key="e.id"
+        />
+      </div>
+      <Review @close="closeReviewModal" v-if="showReviewModal" />
     </div>
   </div>
 </template>
@@ -12,14 +17,28 @@
 <script>
 import Button from "@/components/Button.vue";
 import Review from "@/components/Review.vue";
+import EventItem from "@/components/EventItem.vue";
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     Button,
     Review,
+    EventItem,
+    mapGetters,
   },
+
+  computed: {
+    ...mapGetters(["listOfAttendedEvents"]),
+  },
+
   methods: {
     reviewButtonClicked() {
       this.showReviewModal = true;
+    },
+
+    closeReviewModal() {
+      this.showReviewModal = false;
     },
   },
   data() {
@@ -34,6 +53,8 @@ export default {
 .profileContentContainer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 10em;
   background-color: skyblue;
 }
@@ -41,7 +62,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 10em;
+  width: 60%;
   background-color: purple;
 }
 
