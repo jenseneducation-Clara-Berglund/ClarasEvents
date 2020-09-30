@@ -45,6 +45,8 @@ export default new Vuex.Store({
     ],
     listOfAttendedEvents: [2, 4],
 
+    listOfEventsSignedUpFor: [{ eventId: 2, fName: "Karin", lName: "Eriksson", email: "karin@example.com" }]
+
 
   },
   getters: {
@@ -55,6 +57,16 @@ export default new Vuex.Store({
       return state.listOfEvents.filter(event => {
         return state.listOfAttendedEvents.includes(event.id)
       })
+    }
+  },
+  mutations: {
+    signUpForEvent(state, data) {
+      state.listOfEventsSignedUpFor.push(data)
+    }
+  },
+  actions: {
+    signUpForEvent({ commit }, data) {
+      commit('signUpForEvent', data)
     }
   }
 })
